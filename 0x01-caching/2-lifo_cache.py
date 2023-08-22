@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+"""Last In First Out caching"""
+
+BaseCaching = __import__('base_caching').BaseCaching
+
+
+class LIFOCache(BaseCaching):
+    """The LIFO caching class"""
+
+    def __init__(self):
+        """The initialization method"""
+        super().__init__()
+        self.cache_key_idxs = []
+
+    def put(self, key, item):
+        """Add items to cache"""
+        if key is not None and item is not None:
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                to_discard = self.cache_key_idxs.pop()
+                del self.cache_data[to_discard]
+                print('DISCARD:', to_discard)
+            self.cache_data[key] = item
+            self.cache_key_idxs.append(key)
+
+    def get(self, key):
+        """Retrieve cache tems by key"""
+        if key is not None and key in self.cache_data:
+            return self.cache_data[key]
