@@ -19,7 +19,7 @@ class MRUCache(BaseCaching):
             self.MRU_list.append(key)
             self.cache_data[key] = item
 
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+        if len(self.cache_data) > self.MAX_ITEMS:
             last_idx = len(self.MRU_list) - 2
             to_discard = self.MRU_list.pop(last_idx)
             del self.cache_data[to_discard]
@@ -27,7 +27,7 @@ class MRUCache(BaseCaching):
 
     def get(self, key):
         """Method to retrieve items from cache"""
-        val = self.cache_data[key]
+        val = self.cache_data.get(key)
         if key and key in self.MRU_list:
             self.MRU_list.remove(key)
         self.MRU_list.append(key)
