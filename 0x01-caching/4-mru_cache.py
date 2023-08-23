@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Most Recently Used caching module"""
 
 BaseCaching = __import__('base_caching').BaseCaching
