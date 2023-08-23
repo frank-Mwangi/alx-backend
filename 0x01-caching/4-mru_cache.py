@@ -16,12 +16,12 @@ class MRUCache(BaseCaching):
         if key and item:
             if key in self.MRU_list:
                 self.MRU_list.remove(key)
-            self.MRU_list.insert(0, key)
+            self.MRU_list.append(key)
             self.cache_data[key] = item
 
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            to_discard = self.MRU_list[0]
-            self.MRU_list.remove(to_discard)
+            last_idx = len(self.MRU_list) - 2
+            to_discard = self.MRU_list.pop(last_idx)
             del self.cache_data[to_discard]
             print("DISCARD:", to_discard)
 
@@ -30,5 +30,5 @@ class MRUCache(BaseCaching):
         val = self.cache_data[key]
         if key and key in self.MRU_list:
             self.MRU_list.remove(key)
-        self.MRU_list.insert(0, key)
+        self.MRU_list.append(key)
         return val
