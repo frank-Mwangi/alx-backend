@@ -2,7 +2,7 @@
 """"Basic Babel setup"""
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 app = Flask(__name__)
@@ -18,7 +18,7 @@ class Config:
 
 app.config.from_object(Config)
 
-babel = Babel(app)
+babel.init_app(app)
 
 
 @babel.localeselector
@@ -30,9 +30,7 @@ def get_locale():
 @app.route("/")
 def home():
     """The homepage"""
-    return render_template("3-index.html",
-                            home_title=_("home_title"),
-                            home_header=_("home_header"))
+    return render_template("3-index.html")
 
 
 if __name__ == "__main__":
