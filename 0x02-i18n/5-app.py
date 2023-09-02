@@ -49,6 +49,7 @@ def before_request():
     """set user"""
     g.user = get_user()
 
+
 def get_user():
     """Validate user function"""
     key = request.args.get('login_as')
