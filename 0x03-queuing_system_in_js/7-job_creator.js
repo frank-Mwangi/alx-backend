@@ -62,7 +62,7 @@ const createJob = (jobData) => {
 
   // Event handlers for job progress, completion and failure
   job.on('progress', (progress) => {
-    console.log(`Notification job ${job.id} ${progress} complete`);
+    console.log(`Notification job ${job.id} ${progress}% complete`);
   });
   job.on('complete', () => {
     console.log(`Notification job ${job.id} completed`);
